@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>cl.agente.ejemplo</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/ruta/al/repo/runner/correr-agente.sh</string>
+        <string>ejemplo-semanal</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/ruta/al/repo</string>
+
+    <!-- launchd y no cron: en un notebook, cron pierde las corridas que caen
+         con la maquina dormida. StartCalendarInterval las dispara al despertar. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key><integer>1</integer>
+        <key>Hour</key><integer>5</integer>
+        <key>Minute</key><integer>7</integer>
+    </dict>
+
+    <!-- No dispararse al instalar: solo en su horario. -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <!-- Sin esto hereda el PATH pelado de launchd y no encuentra node. -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/ruta/al/repo/registro/launchd.out</string>
+    <key>StandardErrorPath</key>
+    <string>/ruta/al/repo/registro/launchd.err</string>
+</dict>
+</plist>

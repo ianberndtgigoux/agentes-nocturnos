@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "Bash(npx tsx scripts/consultar-datos.ts *)",
+      "Bash(npx tsx scripts/leer-informes.ts *)",
+      "Bash(npx tsx scripts/publicar-informe.ts *)",
+      "Edit(//tmp/*)"
+    ],
+    "deny": [
+      "Read(//ruta/al/repo/**)"
+    ],
+    "disableBypassPermissionsMode": "disable"
+  }
+}
